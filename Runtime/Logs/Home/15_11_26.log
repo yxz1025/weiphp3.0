@@ -1,0 +1,9 @@
+[ 2015-11-26T17:50:53+08:00 ] ::1 /index.php?s=/addon/Vote/Vote/lists.html&mdm=17
+ERR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'weiphp.wp_vote' doesn't exist
+
+[ 2015-11-26T17:51:09+08:00 ] ::1 /index.php?s=/addon/Vote/Vote/lists.html&mdm=17
+ERR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'weiphp.wp_vote' doesn't exist
+
+[ 2015-11-26T17:52:09+08:00 ] ::1 /index.php?s=/addon/Vote/Vote/lists.html&mdm=17
+ERR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'weiphp.wp_vote' doesn't exist
+

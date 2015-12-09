@@ -1,0 +1,1 @@
+a:6:{i:0;s:8:"publicid";i:1;s:5:"addon";i:2;s:6:"aim_id";i:3;s:4:"time";i:4;s:5:"count";s:5:"_type";a:5:{s:8:"publicid";s:7:"int(11)";s:5:"addon";s:11:"varchar(30)";s:6:"aim_id";s:7:"int(11)";s:4:"time";s:10:"bigint(12)";s:5:"count";s:7:"int(11)";}}
