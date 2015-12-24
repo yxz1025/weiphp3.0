@@ -17,42 +17,42 @@ class WeixinModel extends Model {
 		$content = wp_file_get_contents ( 'php://input' );
 		! empty ( $content ) || die ( '这是微信请求的接口地址，直接在浏览器里无效' );
 		
-		if ($_GET ['encrypt_type'] == 'aes') {
-			vendor ( 'WXBiz.wxBizMsgCrypt' );
+		// if ($_GET ['encrypt_type'] == 'aes') {
+		// 	vendor ( 'WXBiz.wxBizMsgCrypt' );
 			
-			$this->sReqTimeStamp = I ( 'get.timestamp' );
-			$this->sReqNonce = I ( 'get.nonce' );
-			$this->sEncryptMsg = I ( 'get.msg_signature' );
+		// 	$this->sReqTimeStamp = I ( 'get.timestamp' );
+		// 	$this->sReqNonce = I ( 'get.nonce' );
+		// 	$this->sEncryptMsg = I ( 'get.msg_signature' );
 			
-			if (isset ( $_GET ['appid'] )) {
-				if ($_GET ['appid'] == 'wx570bc396a51b8ff8') {
-					$info ['token'] = 'gh_3c884a361561';
-					$info ['encodingaeskey'] = 'DfEqNBRvzbg8MJdRQCSGyaMp6iLcGOldKFT0r8I6Tnp';
-					$info ['appid'] = 'wxea0485bef5247236';
-				} else {
-					$map ['appid'] = I ( 'get.appid' );
-					$info = D ( 'Common/Public' )->where ( $map )->find ();
-				}
-			} else {
-				$id = I ( 'get.id' );
-				$info = D ( 'Common/Public' )->getInfo ( $id );
-			}
+		// 	if (isset ( $_GET ['appid'] )) {
+		// 		if ($_GET ['appid'] == 'wx570bc396a51b8ff8') {
+		// 			$info ['token'] = 'gh_3c884a361561';
+		// 			$info ['encodingaeskey'] = 'DfEqNBRvzbg8MJdRQCSGyaMp6iLcGOldKFT0r8I6Tnp';
+		// 			$info ['appid'] = 'wxea0485bef5247236';
+		// 		} else {
+		// 			$map ['appid'] = I ( 'get.appid' );
+		// 			$info = D ( 'Common/Public' )->where ( $map )->find ();
+		// 		}
+		// 	} else {
+		// 		$id = I ( 'get.id' );
+		// 		$info = D ( 'Common/Public' )->getInfo ( $id );
+		// 	}
 			
-			get_token ( $info ['token'] ); // 设置token
+		// 	get_token ( $info ['token'] ); // 设置token
 			
-			$this->wxcpt = new \WXBizMsgCrypt ( 'weiphp', $info ['encodingaeskey'], $info ['appid'] );
+		// 	$this->wxcpt = new \WXBizMsgCrypt ( 'weiphp', $info ['encodingaeskey'], $info ['appid'] );
 			
-			$sMsg = ""; // 解析之后的明文
-			$errCode = $this->wxcpt->DecryptMsg ( $this->sEncryptMsg, $this->sReqTimeStamp, $this->sReqNonce, $content, $sMsg );
-			if ($errCode != 0) {
-				addWeixinLog ( $_GET, "DecryptMsg Error: " . $errCode );
-				addWeixinLog ( $content, "DecryptMsg Error: content" );
-				exit ();
-			} else {
-				// 解密成功，sMsg即为xml格式的明文
-				$content = $sMsg;
-			}
-		}
+		// 	$sMsg = ""; // 解析之后的明文
+		// 	$errCode = $this->wxcpt->DecryptMsg ( $this->sEncryptMsg, $this->sReqTimeStamp, $this->sReqNonce, $content, $sMsg );
+		// 	if ($errCode != 0) {
+		// 		addWeixinLog ( $_GET, "DecryptMsg Error: " . $errCode );
+		// 		addWeixinLog ( $content, "DecryptMsg Error: content" );
+		// 		exit ();
+		// 	} else {
+		// 		// 解密成功，sMsg即为xml格式的明文
+		// 		$content = $sMsg;
+		// 	}
+		// }
 		
 		$data = new \SimpleXMLElement ( $content );
 		// $data || die ( '参数获取失败' );
