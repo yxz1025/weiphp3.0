@@ -14,7 +14,7 @@ class WeixinModel extends Model {
 		if ($_REQUEST ['doNotInit'])
 			return true;
 		
-		$content = wp_file_get_contents ( 'php://input' );
+		$content = file_get_contents ( 'php://input' );
 		! empty ( $content ) || die ( '这是微信请求的接口地址，直接在浏览器里无效' );
 		
 		// if ($_GET ['encrypt_type'] == 'aes') {
