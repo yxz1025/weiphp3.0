@@ -11,11 +11,11 @@ class WeixinModel extends Model {
 	var $data = array ();
 	var $wxcpt, $sReqTimeStamp, $sReqNonce, $sEncryptMsg;
 	public function __construct() {
-		if ($_REQUEST ['doNotInit'])
-			return true;
+		// if ($_REQUEST ['doNotInit'])
+		// 	return true;
 		
-		$content = file_get_contents ( 'php://input' );
-		! empty ( $content ) || die ( '这是微信请求的接口地址，直接在浏览器里无效' );
+		// $content = file_get_contents ( 'php://input' );
+		// ! empty ( $content ) || die ( '这是微信请求的接口地址，直接在浏览器里无效' );
 		
 		// if ($_GET ['encrypt_type'] == 'aes') {
 		// 	vendor ( 'WXBiz.wxBizMsgCrypt' );
@@ -54,10 +54,15 @@ class WeixinModel extends Model {
 		// 	}
 		// }
 		
+		if ($_REQUEST ['doNotInit'])
+			return true;
+		
+		$content = file_get_contents ( 'php://input' );
+		! empty ( $content ) || die ( '这是微信请求的接口地址，直接在浏览器里无效' );
 		$data = new \SimpleXMLElement ( $content );
 		// $data || die ( '参数获取失败' );
 		foreach ( $data as $key => $value ) {
-			$this->data [$key] = safe ( strval ( $value ) );
+			$this->data [$key] = strval ( $value );
 		}
 	}
 	/* 获取微信平台请求的信息 */
